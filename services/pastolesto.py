@@ -34,3 +34,5 @@ class Canteen:
                             detail = (sh.cell_value(rx, column), sh.cell_value(rx, column + 1))
                             menu.append(self.__cleanMenu(detail))
                     return menu
+
+        return menu
