@@ -7,13 +7,9 @@ import re
 
 class Canteen:
     def __getDateString(self):
-        days = ["LUNEDÌ", "MARTEDÌ", "MERCOLEDÌ", "GIOVEDÌ", "VENERDÌ"]
         today = datetime.datetime.today()
-        weekday = today.weekday()
-        weekstring = days[weekday]
         daystring = "%d/%d" % (today.day, today.month)
-        datestring = weekstring + " " + daystring
-        return datestring
+        return daystring #NOTE this returns the daystring, like 19/10
 
     def __cleanMenu(self, menu):
         name = menu[0]
@@ -28,33 +24,15 @@ class Canteen:
         book = xlrd.open_workbook("./resources/menusettimanale.xls")
         sh = book.sheet_by_index(0)
 
-        # rows from 5 to 11 contain the information we need
-        # 11 - 5 = 6 --> 5 rows of info
-        rx = 3
-        # columns from 1 to 15 contain the information we need
-        # look for DAY x/xx
-        cx = 1
+        menu = []
 
-        currentweek = 1
-        columntolookfor = -1
+        for column in range(0, sh.ncols):
+            for row in range(0, sh.nrows):
+                if datestring in "%s" % sh.cell_value(row, column):
+                    for rx in range(row + 1, row + 8): # 6 rows of data
+                        if sh.cell_value(rx, column) != '':
+                            detail = (sh.cell_value(rx, column), sh.cell_value(rx, column + 1))
+                            menu.append(self.__cleanMenu(detail))
+                    return menu
 
-        while columntolookfor == -1:
-            for cx in range(sh.ncols):
-                if sh.cell_value(rx, cx) == datestring:
-                    columntolookfor = cx
-
-            if currentweek >= 4 or columntolookfor != -1:
-                break
-            else:
-                rx = rx + 35 #Go to the next week
-                currentweek = currentweek + 1
-
-        if columntolookfor == -1:
-            return None
-        else:
-            menu = []
-            for row in range(rx + 1, rx + 8): # 6 rows of data
-                if sh.cell_value(row, columntolookfor) != '':
-                    detail = (sh.cell_value(row, columntolookfor), sh.cell_value(row, columntolookfor + 1))
-                    menu.append(self.__cleanMenu(detail))
-            return menu
+        return menu
