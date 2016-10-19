@@ -7,12 +7,8 @@ import re
 
 class Canteen:
     def __getDateString(self):
-        days = ["LUNEDÌ", "MARTEDÌ", "MERCOLEDÌ", "GIOVEDÌ", "VENERDÌ"]
         today = datetime.datetime.today()
-        weekday = today.weekday()
-        weekstring = days[weekday]
         daystring = "%d/%d" % (today.day, today.month)
-        datestring = weekstring + " " + daystring
         return daystring #NOTE this returns the daystring, like 19/10
 
     def __cleanMenu(self, menu):
