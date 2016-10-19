@@ -7,8 +7,7 @@ app = Flask(__name__)
 def pastolesto():
 	canteen = Canteen()
 	menu = canteen.getTodayMenu()
-	print(menu)
-	if menu == None:
+	if not menu:
 		err_resp = {"message": "no food today"}
 		return json.dumps(err_resp)
 	else:

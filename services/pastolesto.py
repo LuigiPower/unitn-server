@@ -9,7 +9,7 @@ class Canteen:
     def __getDateString(self):
         today = datetime.datetime.today()
         daystring = "%d/%d" % (today.day, today.month)
-        return daystring #NOTE this returns the daystring, like 19/10
+        return daystring
 
     def __cleanMenu(self, menu):
         name = menu[0]
@@ -34,5 +34,4 @@ class Canteen:
                             detail = (sh.cell_value(rx, column), sh.cell_value(rx, column + 1))
                             menu.append(self.__cleanMenu(detail))
                     return menu
-
         return menu
