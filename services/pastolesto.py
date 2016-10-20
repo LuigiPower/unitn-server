@@ -29,7 +29,7 @@ class Canteen:
         for column in range(0, sh.ncols):
             for row in range(0, sh.nrows):
                 if datestring in "%s" % sh.cell_value(row, column):
-                    for rx in range(row + 1, row + 8): # 6 rows of data
+                    for rx in range(row + 1, row + 9): # 6 rows of data
                         if sh.cell_value(rx, column) != '':
                             detail = (sh.cell_value(rx, column), sh.cell_value(rx, column + 1))
                             menu.append(self.__cleanMenu(detail))
