@@ -4,7 +4,9 @@
 import xlrd
 import datetime
 import re
-
+import requests
+from bs4 import BeautifulSoup
+import urllib.request
 
 class Canteen:
 
@@ -56,4 +58,18 @@ class Canteen:
     def getCompleteMenuDinner(self):
         menu = self.__getMenu('./resources/complete.xls', 1)
         return self.__convertToDic(menu)
+        
+    def update(self):
+    	r = requests.get('http://www.operauni.tn.it/servizi/ristorazione/menu')
+    	if r.status_code == 200:
+    		soup = BeautifulSoup(r.text, 'html.parser')
+    		documents_link = []
+    		for download_button in soup.find_all('i', 'icon-download'):
+    			documents_link.append(download_button.parent['href'])
+    		
+    		urllib.request.urlretrieve(documents_link[0], './resources/complete.xls')
+    		urllib.request.urlretrieve(documents_link[1], './resources/pastolesto.xls')
+    		
+    		
+    	
 
