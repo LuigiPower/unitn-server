@@ -19,7 +19,6 @@ class Canteen:
         name = menu[0]
         name = name.replace('*', '')
         name = name.replace(',', '')
-        name = name.replace('*', '')
         name = re.sub('\d', '', name)
         return (name.strip(), menu[1])
 
