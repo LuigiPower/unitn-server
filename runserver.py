@@ -24,11 +24,5 @@ def canteen():
 	else:
 		return json.dumps(menu), 200, {'Content-Type': 'application/json;'}
 
-@app.route('/update')
-def update():
-	cant = Canteen()
-	cant.update()
-	return 'UPDATED', 200
-	
 if __name__ == "__main__":
     app.run()
