@@ -1,5 +1,19 @@
-unitnserver:
-  build: .
-  dockerfile: Dockerfile
-  ports:
-    - "5000:5000"
+version: '2'
+services:
+  unitnserver:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db 
+  updater:
+    build: ./updater
+  db:
+    environment:
+      - MYSQL_ROOT_PASSWORD=unitn
+      - MYSQL_DATABASE=canteen
+      - MYSQL_USER=studente
+      - MYSQL_PASSWORD=unitn
+    image: mariadb
+    volumes:
+      - ./data/:/var/lib/mysql

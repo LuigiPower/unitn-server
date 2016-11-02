@@ -1,4 +1,1 @@
 Flask
-xlrd
-beautifulsoup4
-requests
