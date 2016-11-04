@@ -11,7 +11,7 @@ services:
   db:
     environment:
       - MYSQL_ROOT_PASSWORD=unitn
-      - MYSQL_DATABASE=canteen
+      - MYSQL_DATABASE=canteendb
       - MYSQL_USER=studente
       - MYSQL_PASSWORD=unitn
     image: mariadb
