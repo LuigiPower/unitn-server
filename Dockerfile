@@ -1,7 +1,7 @@
 FROM python:3-onbuild
 MAINTAINER emavgl
 
-RUN apt-get update && apt-get install -y libmysqlclient-dev mysql-client
+RUN apt-get update && apt-get install -y libmysqlclient-dev mysql-client python3-mysqldb
 
 ENV FLASK_APP=runserver.py
 EXPOSE 5000
