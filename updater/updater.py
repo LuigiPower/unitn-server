@@ -1,5 +1,5 @@
-from parsecanteen import Canteen
-from dbconnector import DbConnector
+from parser.canteen import Canteen
+from tools.dbconnector import DbConnector
 
 # Retrieve latest xls files from the website
 cant = Canteen()
@@ -12,6 +12,8 @@ complete_menu_lunch = cant.getPastolestoMenu()
 
 # Init db connector
 db = DbConnector()
+
+# Clear all the meal table
 
 # Add pastolesto_menu
 for menu in pastolesto_menu:

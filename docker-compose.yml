@@ -1,7 +1,7 @@
 version: '2'
 services:
-  unitnserver:
-    build: .
+  flaskapp:
+    build: ./flaskapp
     ports:
       - "5000:5000"
     depends_on:
@@ -16,4 +16,4 @@ services:
       - MYSQL_PASSWORD=unitn
     image: mariadb
     volumes:
-      - ./data/:/var/lib/mysql
+      - .db/data/:/var/lib/mysql
