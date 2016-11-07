@@ -1,2 +1,1 @@
 */2 * * * * python /usr/src/app/updater.py >> /var/log/cron.log 2>&1
-

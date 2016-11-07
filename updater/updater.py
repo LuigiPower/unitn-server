@@ -14,15 +14,25 @@ complete_menu_lunch = cant.getPastolestoMenu()
 db = DbConnector()
 
 # Clear all the meal table
+db.cleanMealTable()
 
 # Add pastolesto_menu
 for menu in pastolesto_menu:
-    db.insertMenu(menu['menu'], int(menu['calorie']), menu['day'], 'pastolesto')
+    calorie = 0
+    if menu['calorie'] != '':
+        calorie = int(menu['calorie'])
+    db.insertMenu(menu['name'], calorie, menu['day'], 'pastolesto')
 
 # Add dinner menu
 for menu in complete_menu_dinner:
-    db.insertMenu(menu['menu'], int(menu['calorie']), menu['day'], 'dinner')
+    calorie = 0
+    if menu['calorie'] != '':
+        calorie = int(menu['calorie'])
+    db.insertMenu(menu['name'], calorie, menu['day'], 'dinner')
 
 # Add lunch menu
 for menu in complete_menu_lunch:
-    db.insertMenu(menu['menu'], int(menu['calorie']), menu['day'], 'lunch')
+    calorie = 0
+    if menu['calorie'] != '':
+        calorie = int(menu['calorie'])
+    db.insertMenu(menu['name'], calorie, menu['day'], 'lunch')
