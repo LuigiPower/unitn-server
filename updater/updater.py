@@ -8,7 +8,7 @@ cant.update()
 # Parse the xls file
 pastolesto_menu = cant.getPastolestoMenu()
 complete_menu_dinner = cant.getCompleteMenuDinner()
-complete_menu_lunch = cant.getPastolestoMenu()
+complete_menu_lunch = cant.getCompleteMenu()
 
 # Init db connector
 db = DbConnector()
@@ -36,3 +36,5 @@ for menu in complete_menu_lunch:
     if menu['calorie'] != '':
         calorie = int(menu['calorie'])
     db.insertMenu(menu['name'], calorie, menu['day'], 'lunch')
+
+print("updated!")
