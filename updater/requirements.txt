@@ -1,0 +1,5 @@
+xlrd
+beautifulsoup4
+requests
+PyMySQL
+python-dateutil
